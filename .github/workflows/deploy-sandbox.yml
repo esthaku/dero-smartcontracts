@@ -1,0 +1,26 @@
+name: Pot DAPP deployment
+
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  build-and-push-image:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./pot
+    steps:
+      - uses: actions/checkout@v2
+      - name: Push image to Heroku registry
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "pot-dapp"
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          usedocker: true
+          docker_build_args: |
+            NODE_ENV
+        env:
+          NODE_ENV: production
