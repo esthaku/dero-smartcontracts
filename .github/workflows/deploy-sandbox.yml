@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - "main"
+  pull_request:
+    types: [opened, synchronize]
 
 jobs:
   build-and-push-image:
@@ -20,7 +22,3 @@ jobs:
           heroku_app_name: "pot-dapp"
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           usedocker: true
-          docker_build_args: |
-            NODE_ENV
-        env:
-          NODE_ENV: production
