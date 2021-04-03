@@ -1,7 +1,7 @@
-FROM elixir:alpine AS build
+FROM elixir:latest AS build
 
 # install build dependencies
-RUN apk add --no-cache build-base npm git python
+# RUN apk add --no-cache build-base npm git python
 
 # prepare build dir
 WORKDIR /app
